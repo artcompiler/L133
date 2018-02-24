@@ -20,6 +20,9 @@ messages[1004] = "No visitor method defined for '%1'.";
 const transform = (function() {
   const table = {
     // v1
+    "CONTAINER" : container,
+    "CONTAINER-FLUID" : containerFluid,
+    "H1" : h1,
     "PROG" : program,
     "EXPRS" : exprs,
     "STR": str,
@@ -76,11 +79,17 @@ const transform = (function() {
   // BEGIN VISITOR METHODS
   function str(node, options, resume) {
     let val = node.elts[0];
-    resume([], val);
+    resume([], {
+      type: "str",
+      value: val
+    });
   }
   function num(node, options, resume) {
     let val = node.elts[0];
-    resume([], +val);
+    resume([], {
+      type: "num",
+      value: val
+    });
   }
   function ident(node, options, resume) {
     let val = node.elts[0];
@@ -330,6 +339,30 @@ const transform = (function() {
       });
     });
   }
+  function container(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "container",
+        args: val1,
+      });
+    });
+  };
+  function containerFluid(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "container-fluid",
+        args: val1,
+      });
+    });
+  };
+  function h1(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "h1",
+        args: val1,
+      });
+    });
+  };
   return transform;
 })();
 let render = (function() {

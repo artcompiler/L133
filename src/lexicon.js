@@ -1,5 +1,8 @@
 /* @flow */
 window.gcexports.globalLexicon = {
+    "container" : { "tk": 1, "name": "CONTAINER", "cls": "function", "length": 1 , "arity": 1 },
+    "container-fluid" : { "tk": 1, "name": "CONTAINER-FLUID", "cls": "function", "length": 1 , "arity": 1 },
+    "h1" : { "tk": 1, "name": "H1", "cls": "function", "length": 1 , "arity": 1 },
     "val" : { "tk": 1, "name": "VAL", "cls": "function", "length": 2 , "arity": 2 },
     "key" : { "tk": 1, "name": "KEY", "cls": "function", "length": 2 , "arity": 2 },
     "len" : { "tk": 1, "name": "LEN", "cls": "function", "length": 1 , "arity": 1 },
