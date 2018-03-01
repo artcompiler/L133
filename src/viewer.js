@@ -355,11 +355,6 @@ window.gcexports.viewer = (function () {
     return elts;
   }
   var Viewer = React.createClass({
-    componentDidMount () {
-      loadStyle("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css", () => {
-        console.log("Style loaded!");
-      });
-    },
     render () {
       // If you have nested components, make sure you send the props down to the
       // owned components.
