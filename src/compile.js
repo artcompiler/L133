@@ -22,6 +22,10 @@ const transform = (function() {
     // v1
     "CONTAINER" : container,
     "CONTAINER-FLUID" : containerFluid,
+    "ROW" : row,
+    "COL" : col,
+    "COL-SM" : colSM,
+    "COL-SM-4" : colSM4,
     "H1" : h1,
     "PROG" : program,
     "EXPRS" : exprs,
@@ -37,7 +41,7 @@ const transform = (function() {
     "VAL" : val,
     "KEY" : key,
     "LEN" : len,
-    "STYLE" : styleV1,
+    "STYLE" : style,
     "CONCAT" : concat,
     "ARG" : arg,
     "IN" : inData,
@@ -193,7 +197,7 @@ const transform = (function() {
   function binding(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
-        resume([].concat(err1).concat(err2), {key: val1, val: val2});
+        resume([].concat(err1).concat(err2), {key: val1.value, val: val2.value});
       });
     });
   }
@@ -322,20 +326,8 @@ const transform = (function() {
   function style(node, options, resume) {
     visit(node.elts[0], options, function (err1, val1) {
       visit(node.elts[1], options, function (err2, val2) {
-        resume([].concat(err1).concat(err2), {
-          value: val1,
-          style: val2,
-        });
-      });
-    });
-  }
-  function styleV1(node, options, resume) {
-    visit(node.elts[0], options, function (err1, val1) {
-      visit(node.elts[1], options, function (err2, val2) {
-        resume([].concat(err1).concat(err2), {
-          style: val1,
-          value: val2,
-        });
+        val2.style = val1;
+        resume([].concat(err1).concat(err2), val2);
       });
     });
   }
@@ -351,6 +343,46 @@ const transform = (function() {
     visit(node.elts[0], options, function (err1, val1) {
       resume([].concat(err1), {
         type: "container-fluid",
+        args: val1,
+      });
+    });
+  };
+  function row(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "row",
+        args: val1,
+      });
+    });
+  };
+  function col(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "col",
+        args: val1,
+      });
+    });
+  };
+  function colSM(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "col-sm",
+        args: val1,
+      });
+    });
+  };
+  function colSM4(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "col-sm4",
+        args: val1,
+      });
+    });
+  };
+  function col4(node, options, resume) {
+    visit(node.elts[0], options, function (err1, val1) {
+      resume([].concat(err1), {
+        type: "col-4",
         args: val1,
       });
     });

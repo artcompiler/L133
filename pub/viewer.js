@@ -367,16 +367,19 @@ window.gcexports.viewer = function () {
           ));
           break;
         case "row":
+        case "col":
+        case "col-sm":
+        case "col-sm-4":
           elts.push(React.createElement(
             "div",
-            _extends({ className: "row", key: i, style: n.style }, n.attrs),
+            _extends({ className: n.type, key: i, style: n.style }, n.attrs),
             args
           ));
           break;
-        case "oneColumn":
+        case "col-sm":
           elts.push(React.createElement(
             "div",
-            _extends({ className: "one column", key: i, style: n.style }, n.attrs),
+            _extends({ className: "col-sm", key: i, style: n.style }, n.attrs),
             args
           ));
           break;
