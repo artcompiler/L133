@@ -26,6 +26,7 @@ const transform = (function() {
     "COL" : col,
     "COL-SM" : colSM,
     "COL-SM-4" : colSM4,
+    "PIE-CHART": pieChart,
     "H1" : h1,
     "PROG" : program,
     "EXPRS" : exprs,
@@ -384,6 +385,19 @@ const transform = (function() {
       resume([].concat(err1), {
         type: "col-4",
         args: val1,
+      });
+    });
+  };
+  function pieChart(node, options, resume) {
+    visit(node.elts[0], options, function (err0, val0) {
+      visit(node.elts[1], options, function (err1, val1) {
+        resume([].concat(err0).concat(err1), {
+          type: "pie-chart",
+          args: {
+            cols: val0,
+            vals: val1,
+          }
+        });
       });
     });
   };

@@ -383,6 +383,9 @@ window.gcexports.viewer = function () {
             args
           ));
           break;
+        case "pie-chart":
+          elts.push(React.createElement(PieChart, _extends({ key: i, style: n.style }, n)));
+          break;
         case "twoColumns":
           elts.push(React.createElement(
             "div",
@@ -626,6 +629,48 @@ window.gcexports.viewer = function () {
     });
     return elts;
   }
+  var PieChart = React.createClass({
+    displayName: "PieChart",
+    componentDidMount: function componentDidMount() {
+      this.componentDidUpdate();
+    },
+    componentDidUpdate: function componentDidUpdate() {
+      var svg = d3.select("svg.pie-chart"),
+          width = +svg.attr("width"),
+          height = +svg.attr("height"),
+          radius = Math.min(width, height) / 2,
+          g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+      var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+      var data = this.props.args.vals;
+      var valKey = this.props.args.cols[1].value;
+      var lblKey = this.props.args.cols[0].value;
+
+      var pie = d3.pie().sort(null).value(function (d) {
+        return d[valKey];
+      });
+
+      var path = d3.arc().outerRadius(radius - 10).innerRadius(0);
+
+      var label = d3.arc().outerRadius(radius - 100).innerRadius(radius - 40);
+
+      var arc = g.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
+
+      arc.append("path").attr("d", path).attr("fill", function (d) {
+        return color(d.data[lblKey]);
+      });
+
+      arc.append("text").attr("transform", function (d) {
+        return "translate(" + label.centroid(d) + ")";
+      }).attr("dy", "0.35em").text(function (d) {
+        return d.data[lblKey];
+      });
+    },
+    render: function render() {
+      return React.createElement("svg", { className: "pie-chart", width: "250", height: "250" });
+    }
+  });
   var Viewer = React.createClass({
     displayName: "Viewer",
     render: function render() {
@@ -636,7 +681,7 @@ window.gcexports.viewer = function () {
       var elts = _render(data, props);
       return React.createElement(
         "div",
-        null,
+        { className: "L133" },
         elts
       );
     }

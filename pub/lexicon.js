@@ -6,6 +6,7 @@ window.gcexports.globalLexicon = {
   "col" : { "tk": 1, "name": "COL", "cls": "function", "length": 1, "arity": 1 },
   "col-sm" : { "tk": 1, "name": "COL-SM", "cls": "function", "length": 1, "arity": 1 },
   "col-sm-4" : { "tk": 1, "name": "COL-SM-4", "cls": "function", "length": 1, "arity": 1 },
+  "pie-chart" : { "tk": 1, "name": "PIE-CHART", "cls": "function", "length": 2, "arity": 2 },
   "h1" : { "tk": 1, "name": "H1", "cls": "function", "length": 1 , "arity": 1 },
   "val" : { "tk": 1, "name": "VAL", "cls": "function", "length": 2 , "arity": 2 },
   "key" : { "tk": 1, "name": "KEY", "cls": "function", "length": 2 , "arity": 2 },
