@@ -391,11 +391,17 @@ const transform = (function() {
   function pieChart(node, options, resume) {
     visit(node.elts[0], options, function (err0, val0) {
       visit(node.elts[1], options, function (err1, val1) {
+        let cols = [];
+        let vals = [];
+        val0.forEach(c => {
+          cols.push(c);
+          vals.push(val1[c.name]);
+        });
         resume([].concat(err0).concat(err1), {
           type: "pie-chart",
           args: {
-            cols: val0,
-            vals: val1,
+            cols: cols,
+            vals: vals,
           }
         });
       });

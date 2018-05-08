@@ -635,6 +635,8 @@ window.gcexports.viewer = function () {
       this.componentDidUpdate();
     },
     componentDidUpdate: function componentDidUpdate() {
+      var _this = this;
+
       var svg = d3.select("svg.pie-chart"),
           width = +svg.attr("width"),
           height = +svg.attr("height"),
@@ -643,28 +645,35 @@ window.gcexports.viewer = function () {
 
       var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
-      var data = this.props.args.vals;
-      var valKey = this.props.args.cols[1].value;
-      var lblKey = this.props.args.cols[0].value;
+      var data = [];
+      this.props.args.cols.forEach(function (c, i) {
+        data.push({
+          col: c,
+          val: _this.props.args.vals[i]
+        });
+      });
+
+      var lblKey = this.props.args.cols[0];
+      var valKey = this.props.args.cols[1];
 
       var pie = d3.pie().sort(null).value(function (d) {
-        return d[valKey];
+        return d.val;
       });
 
       var path = d3.arc().outerRadius(radius - 10).innerRadius(0);
 
-      var label = d3.arc().outerRadius(radius - 100).innerRadius(radius - 40);
+      var label = d3.arc().outerRadius(radius - 70).innerRadius(radius - 40);
 
       var arc = g.selectAll(".arc").data(pie(data)).enter().append("g").attr("class", "arc");
 
       arc.append("path").attr("d", path).attr("fill", function (d) {
-        return color(d.data[lblKey]);
+        return d.data.col.color;
       });
 
       arc.append("text").attr("transform", function (d) {
         return "translate(" + label.centroid(d) + ")";
       }).attr("dy", "0.35em").text(function (d) {
-        return d.data[lblKey];
+        return d.data.col.label;
       });
     },
     render: function render() {

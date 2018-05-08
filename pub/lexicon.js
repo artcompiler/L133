@@ -1,4 +1,5 @@
 /* @flow */
+
 window.gcexports.globalLexicon = {
   "container" : { "tk": 1, "name": "CONTAINER", "cls": "function", "length": 1 , "arity": 1 },
   "container-fluid" : { "tk": 1, "name": "CONTAINER-FLUID", "cls": "function", "length": 1 , "arity": 1 },
