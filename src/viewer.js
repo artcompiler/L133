@@ -432,8 +432,11 @@ window.gcexports.viewer = (function () {
       var data = props.obj ? [].concat(props.obj) : [];
       var elts = render(data, props);
       return (
-        <div className="L133">
+        <div>
+          <link rel="stylesheet" href="https://l133.artcompiler.com/style.css" />
+          <div className="L133 viewer">
           {elts}
+          </div>
         </div>
       );
     },

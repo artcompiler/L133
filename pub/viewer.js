@@ -690,8 +690,13 @@ window.gcexports.viewer = function () {
       var elts = _render(data, props);
       return React.createElement(
         "div",
-        { className: "L133" },
-        elts
+        null,
+        React.createElement("link", { rel: "stylesheet", href: "https://l133.artcompiler.com/style.css" }),
+        React.createElement(
+          "div",
+          { className: "L133 viewer" },
+          elts
+        )
       );
     }
   });
