@@ -691,7 +691,7 @@ window.gcexports.viewer = function () {
       return React.createElement(
         "div",
         null,
-        React.createElement("link", { rel: "stylesheet", href: "https://l133.artcompiler.com/style.css" }),
+        React.createElement("link", { rel: "stylesheet", href: "https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css", crossorigin: "anonymous" }),
         React.createElement(
           "div",
           { className: "L133 viewer" },

@@ -433,7 +433,7 @@ window.gcexports.viewer = (function () {
       var elts = render(data, props);
       return (
         <div>
-          <link rel="stylesheet" href="https://l133.artcompiler.com/style.css" />
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" crossorigin="anonymous" />
           <div className="L133 viewer">
           {elts}
           </div>
