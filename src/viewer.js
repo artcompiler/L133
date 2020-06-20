@@ -432,12 +432,12 @@ window.gcexports.viewer = (function () {
       var data = props.obj ? [].concat(props.obj) : [];
       var elts = render(data, props);
       return (
-        <div>
-          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+          <div>
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
           <div className="L133 viewer">
           {elts}
           </div>
-        </div>
+          </div>
       );
     },
   });
